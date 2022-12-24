@@ -1,0 +1,188 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Matrix extends JFrame implements ActionListener{
+    Container box;
+    JLabel l1,l2;
+    Font f;
+    JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9;
+    JButton b1,b2,b3,b4;
+    private ImageIcon ico;
+
+    Matrix(){
+        box=this.getContentPane();
+        box.setLayout(null);
+        box.setBackground(Color.black);
+
+        //font:
+        f=new Font("Arial",Font.BOLD,22);
+        //label:
+        l1=new JLabel("   MATRIX SOFTWARE");
+        l1.setBounds(60,15,250,40);
+        l1.setBackground(Color.red);
+        l1.setOpaque(true);
+        l1.setForeground(Color.yellow);
+        l1.setFont(f);
+        box.add(l1);
+
+        //text field:
+        t1=new JTextField();
+        t1.setBounds(50,150,40,40);
+        t1.setFont(f);
+        box.add(t1);
+
+        t2=new JTextField();
+        t2.setBounds(140,150,40,40);
+        t2.setFont(f);
+        box.add(t2);
+
+        t3=new JTextField();
+        t3.setBounds(235,150,40,40);
+        t3.setFont(f);
+        box.add(t3);
+
+        t4=new JTextField();
+        t4.setBounds(50,100,40,40);
+        t4.setFont(f);
+        box.add(t4);
+
+        t5=new JTextField();
+        t5.setBounds(140,100,40,40);
+        t5.setFont(f);
+        box.add(t5);
+
+        t6=new JTextField();
+        t6.setBounds(235,100,40,40);
+        t6.setFont(f);
+        box.add(t6);
+
+        t7=new JTextField();
+        t7.setBounds(50,200,40,40);
+        t7.setFont(f);
+        box.add(t7);
+
+        t8=new JTextField();
+        t8.setBounds(140,200,40,40);
+        t8.setFont(f);
+        box.add(t8);
+
+        t9=new JTextField();
+        t9.setBounds(235,200,40,40);
+        t9.setFont(f);
+        box.add(t9);
+
+        //button:
+        b1=new JButton("|A|");
+        b1.setBounds(300,100,80,40);
+        b1.addActionListener(this);
+        box.add(b1);
+
+        b2=new JButton("RS");
+        b2.setBounds(300,150,80,40);
+        b2.addActionListener(this);
+        box.add(b2);
+
+        //button for multiplication:
+        b3=new JButton("M");
+        b3.setBounds(300,200,80,40);
+        b3.addActionListener(this);
+        box.add(b3);
+
+        //help button:
+        b4=new JButton("Help");
+        b4.setBounds(300,250,80,40);
+        b4.addActionListener(this);
+        box.add(b4);
+
+
+        //out put:
+        l2=new JLabel();
+        l2.setBounds(50,250,230,100);
+        l2.setBackground(Color.yellow);
+        l2.setForeground(Color.red);
+        l2.setOpaque(true);
+        l2.setFont(f);
+        box.add(l2);
+
+
+        //frame:
+        setTitle("Matrix (Develope by: Programmer RIFAT)");
+        setSize(400,400);
+        setLayout(null);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        image_1();
+    }
+
+    //image method:
+    public void image_1(){
+        ico =new ImageIcon(getClass().getResource("download.png"));
+        this.setIconImage(ico.getImage());
+    }
+
+
+
+    //main action:
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource().equals(b4)) {
+            Calc ca = new Calc();
+        }else if(e.getSource().equals(b3)){
+            Option op=new Option();
+        }
+        else {
+            int x1 = Integer.parseInt(t1.getText());
+            int x2 = Integer.parseInt(t2.getText());
+            int x3 = Integer.parseInt(t3.getText());
+            int y1 = Integer.parseInt(t4.getText());
+            int y2 = Integer.parseInt(t5.getText());
+            int y3 = Integer.parseInt(t6.getText());
+            int z1 = Integer.parseInt(t7.getText());
+            int z2 = Integer.parseInt(t8.getText());
+            int z3 = Integer.parseInt(t9.getText());
+
+            int c = 0;
+
+            if (e.getSource().equals(b1)) {
+                int d = (y2 * z3) - (z2 * y3);
+                int h = (y1 * z3) - (z1 * y3);
+                int g = (y1 * z2) - (z1 * y2);
+                int m = (x1 * d) - (x2 * h) + (x3 * g);
+//            int n=x2*h;
+//            int o=x3*g;
+//            c = ((m)+(o)-(n));
+                c = m * (-1);
+                l2.setText(String.valueOf("Reasult: " + c));
+            } else if (e.getSource().equals(b2)) {
+                t1.setText("");
+                t2.setText("");
+                t3.setText("");
+                t4.setText("");
+                t5.setText("");
+                t6.setText("");
+                t7.setText("");
+                t8.setText("");
+                t9.setText("");
+
+                l2.setText("");
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+    public static void main(String [] args){
+        new Matrix();
+
+    }
+
+}
